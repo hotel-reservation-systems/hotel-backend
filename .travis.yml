@@ -12,6 +12,8 @@ jobs:
   - php: 7.4
     env: KEY=VALUE
 
+script: php hello.php
+
 dist: bionic
 
 addons:
