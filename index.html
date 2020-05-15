@@ -24,7 +24,62 @@
   <body>
     <h1>Hotel Backend Documentation</h1>
     <p>This is the cs370 project2 backend doc. Code available at <a href="https://github.com/hotel-reservation-systems/hotel-backend" target="_blank">GitHub</a>.</p>
-    <p>Below is a list of available API endpoints and description. All endpoints return in JSON format, with the code 0 for successful execution and others for failure. If the endpoint has data to output, the value is stored in data key. Error message displays in message key.</p>
+    <p>Below is a list of available API endpoints and description. All endpoints return in JSON format, with the code 0 for successful execution and others for failure. If the endpoint has data to output, the value is stored in data key. <a href="https://github.com/hotel-reservation-systems/hotel-backend#error-messages" target="_blank">Error message</a> displays in message key.</p>
+
+    <h2>auth</h2>
+    <h3>login</h3>
+    <p>Log in to the system using provided credential. It accepts POST method only. </p>
+    <p><code>POST <a href="#">/auth/login</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": null,
+          "message": "success",
+          "timestamp": "2020-05-15 04:05:11 UTC+0"
+      }
+    </code>
+    <p>Test:</p>
+    <form action="auth/login/" method="POST" target="_blank">
+      <div class="form-group">
+        <label for="username">username</label>
+        <input type="text" class="form-control" id="username" name="username">
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input type="password" class="form-control" id="password" name="password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>logout</h3>
+    <p>Log out of the system. Access to authorized page will be immediately lost.</p>
+    <p><code>GET <a href="auth/logout" target="_blank">/auth/logout</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": null,
+          "message": "success",
+          "timestamp": "2020-05-15 04:05:11 UTC+0"
+      }
+    </code>
+    <h3>status</h3>
+    <p>List the current auth status, with user information (if user is logged in).</p>
+    <p><code>GET <a href="auth/status" target="_blank">/auth/status</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": {
+              "loggedin": true,
+              "id": 1,
+              "username": "popoway",
+              "role": "customer"
+          },
+          "message": null,
+          "timestamp": "2020-05-15 07:05:22 UTC+0"
+      }
+    </code>
 
     <h2>user</h2>
     <h3>create</h3>

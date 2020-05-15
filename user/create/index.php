@@ -51,7 +51,7 @@ while ($user = $result->fetchArray(SQLITE3_ASSOC)){
 
 // Validate role
 if (trim($_POST["role"]) != "customer" && trim($_POST["role"]) != "administrator") {
-  echo json_encode(returnWrapper(47, null, "Illegal role"), JSON_PRETTY_PRINT);
+  echo json_encode(returnWrapper(48, null, "Illegal role"), JSON_PRETTY_PRINT);
   exit();
 }
 
