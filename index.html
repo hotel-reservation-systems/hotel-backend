@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style media="screen">
+      @media only screen and (min-width: 600px) {
+        body {
+          padding-top: 50px;
+          padding-left: 100px;
+          padding-right: 100px;
+        }
+        code {
+          white-space: pre;
+        }
+      }
+    </style>
+    <title>hotel backend doc</title>
+  </head>
+  <body>
+    <h1>Hotel Backend Documentation</h1>
+    <p>This is the cs370 project2 backend doc. Code available at <a href="https://github.com/hotel-reservation-systems/hotel-backend" target="_blank">GitHub</a>.</p>
+    <p>Below is a list of available API endpoints and description. All endpoints return in JSON format, with the code 0 for successful execution and others for failure. If the endpoint has data to output, the value is stored in data key. Error message displays in message key.</p>
+
+    <h2>user</h2>
+    <h3>create</h3>
+    <p>Create a user. It accepts POST method only. Specify role with either `customer` or `administrator`. The backend validates before creating a new user.</p>
+    <p><code>POST <a href="#">/user/create</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": null,
+          "message": "success",
+          "timestamp": "2020-05-15 04:05:11 UTC+0"
+      }
+    </code>
+    <p>Test:</p>
+    <form action="user/create/" method="POST" target="_blank">
+      <div class="form-group">
+        <label for="username">username</label>
+        <input type="text" class="form-control" id="username" name="username">
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input type="password" class="form-control" id="password" name="password">
+      </div>
+      <div class="form-group">
+        <label for="role">role</label>
+        <select class="form-control" id="role" name="role">
+          <option>customer</option>
+          <option>administrator</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>list</h3>
+    <p>List all the users stored in database.</p>
+    <p><code>GET <a href="user/list" target="_blank">/user/list</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": [
+              {
+                  "id": 1,
+                  "username": "popoway",
+                  "password": "10231023",
+                  "role": "customer",
+                  "created": "2020-05-11 21:06:11",
+                  "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit\/537.36 (KHTML, like Gecko)",
+                  "ip_address": "207.38.249.109"
+              },
+              {
+                  "id": 2,
+                  "username": "mingschain",
+                  "password": "11223344",
+                  "role": "administrator",
+                  "created": "2020-05-11 21:09:42",
+                  "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit\/537.36 (KHTML, like Gecko)",
+                  "ip_address": "207.38.249.109"
+              }
+          ],
+          "message": "Please note that passwords are actually stored with encryption.",
+          "timestamp": "2020-05-14 07:05:51 UTC+0"
+      }
+    </code>
+
+    <h2>system</h2>
+    <h3>session</h3>
+    <p>List the php session content.</p>
+    <p><code>GET <a href="system/session" target="_blank">/system/session</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": {
+              "session_deployed": true
+          },
+          "message": null,
+          "timestamp": "2020-05-11 06:05:17 UTC+0"
+      }
+    </code>
+    <h3>sqlite</h3>
+    <p>Test whether sqlite3 connection with php is working.</p>
+    <p><code>GET <a href="system/sqlite" target="_blank">/system/sqlite</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": {
+              "pdo_sqlite": "enabled",
+              "path": "\/home\/sp20\/340\/lemi2837\/public_html\/cs370\/project2\/backend\/project2.sqlite3",
+              "readable": true,
+              "writable": true,
+              "executable": true
+          },
+          "message": null,
+          "timestamp": "2020-05-11 05:05:23 UTC+0"
+      }
+    </code>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -20,3 +20,5 @@ update-backend:
 
 repair-permissions:
 	@sshpass -p ${SSH_PASS} ssh ${SSH_USER}@${SSH_HOST} "chmod -R 755 public_html/cs370/project2/backend"
+	@sshpass -p ${SSH_PASS} ssh ${SSH_USER}@${SSH_HOST} "chmod 777 public_html/cs370/project2/backend"
+	@sshpass -p ${SSH_PASS} ssh ${SSH_USER}@${SSH_HOST} "chmod 777 public_html/cs370/project2/backend/project2.sqlite3"
