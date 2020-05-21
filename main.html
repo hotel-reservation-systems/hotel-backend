@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HOTEL</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:silver" onload="load_data()">
+  <script>
+    function load_data(){
+    var url=location.href;
+    var num=url.indexOf("?");
+    var str=url.substr(num+1);
+    var signin=document.getElementById("signin");
+    var signup=document.getElementById("signup");
+    var welcome=document.getElementById("welcome");
+    var logout=document.getElementById("logout");
+if(num!=-1){
+    document.getElementById("demo").innerHTML=str;
+      signin.style.display="none";
+      signup.style.display="none";
+      document.getElementById("welcome").innerHTML="welcome "+str;
+      logout.style.display="block";
+    }
+    else{
+      signin.style.display="block";
+      signup.style.display="block";
+      document.getElementById("welcome").innerHTML="";
+      logout.style.display="none";
+    }
+  }
+  </script>
+  <script>
+  $(document).ready(function(){
+    $("logout").click(function(){
+      $.ajax({
+        url:'GET https://venus.cs.qc.cuny.edu/~lemi2837/cs370/project2/backend/auth/logout/',
+        window.location.href="main.html";
+        });
+    });
+  });
+  </script>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+  <a class="navbar-brand" href="main.html">
+    <img src="bird.jpg" alt="logo" style="width:40px;">
+  </a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item" id="signin1">
+      <a class="nav-link"  href="signin_up.html" style="color:silver"  id="signin">Sign in</a>
+      <p  class="nav-link" id="welcome"></p>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="signin_up.html" style="color:silver"  id="signup">Register</a>
+        <button class="btn btn-dark btn-outline-dark-grey" id="logout">logout</button>
+    </li>
+      </ul>
+      <form class="form-inline">
+        <input class="form-control" type="text" placeholder="Search">
+        <button class="btn btn-dark btn-outline-dark-grey" type="submit">Search</button>
+      </form>
+  </ul>
+</nav>
+</div>
+<section class="py-5">
+  <div class="container">
+      <div class="col-md-9">
+        <img class="img-fluid" src="" alt="map"></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
