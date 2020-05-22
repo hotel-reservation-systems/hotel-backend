@@ -15,8 +15,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
   exit;
 }
 
-$db = new SQLite3(SQLITE3_LOCATION, SQLITE3_OPEN_CREATE | SQLITE3_OPEN_READWRITE);
-
 // Check if fields are empty
 if (empty(trim($_POST["username"]))) {
   echo json_encode(returnWrapper(41, null, "Missing username"), JSON_PRETTY_PRINT);
@@ -25,6 +23,8 @@ if (empty(trim($_POST["username"]))) {
   echo json_encode(returnWrapper(42, null, "Missing password"), JSON_PRETTY_PRINT);
   exit();
 }
+
+$db = new SQLite3(SQLITE3_LOCATION, SQLITE3_OPEN_CREATE | SQLITE3_OPEN_READWRITE);
 
 // Validate username and password
 $sql = "SELECT id, username, password, role FROM \"users\" WHERE username = \"" . trim($_POST["username"]) . "\"";
