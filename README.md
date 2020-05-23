@@ -8,6 +8,9 @@
 
 This is the backend codebase for the hotel project.
 
+## Database Design
+[dump.sqlite.sql](https://github.com/hotel-reservation-systems/hotel-backend/blob/master/dump.sqlite.sql)
+
 ## Error Messages
 `0` Success  
 `1` Runtime error  
@@ -30,8 +33,7 @@ This is the backend codebase for the hotel project.
 `54` Missing hotel name  
 `55` This hotel name is already taken  
 `56` Missing grid_i  
-`57` Missing grid_j
+`57` Missing grid_j  
 `58` Invalid grid_i  
-`59` Invalid grid_j
+`59` Invalid grid_j  
 `60` There already exists one hotel at the same grid(i,j)  
- 
