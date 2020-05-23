@@ -20,7 +20,7 @@ if ($_SESSION["role"] !== "administrator") {
   exit;
 }
 
-// Check if chain name is empty
+// Check if hotel name is empty
 if (empty(trim($_POST["name"]))) {
   echo json_encode(returnWrapper(54, null, "Missing hotel name"), JSON_PRETTY_PRINT);
   exit();

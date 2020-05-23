@@ -26,8 +26,60 @@
     <p>This is the cs370 project2 backend doc. Code available at <a href="https://github.com/hotel-reservation-systems/hotel-backend" target="_blank">GitHub</a>.</p>
     <p>Below is a list of available API endpoints and description. All endpoints return in JSON format, with the code 0 for successful execution and others for failure. If the endpoint has data to output, the value is stored in data key. <a href="https://github.com/hotel-reservation-systems/hotel-backend#error-messages" target="_blank">Error message</a> displays in message key.</p>
 
-    <h2>auth</h2>
-    <h3>login</h3>
+    <ul>
+      <li><a href="#auth">auth</a>
+        <ul>
+          <li><a href="#auth-login">login</a></li>
+          <li><a href="#auth-logout">logout</a></li>
+          <li><a href="#auth-status">status</a></li>
+        </ul>
+      </li>
+      <li><a href="#chain">chain</a>
+        <ul>
+          <li><a href="#chain-create">create</a></li>
+          <li><a href="#chain-list">list</a></li>
+        </ul>
+      </li>
+      <li><a href="#hotel">hotel</a>
+        <ul>
+          <li><a href="#hotel-create">create</a></li>
+          <li><a href="#hotel-list">list</a></li>
+        </ul>
+      </li>
+      <li><a href="#room">room</a>
+        <ul>
+          <li><a href="#room-create">create</a></li>
+          <li><a href="#room-list">list</a></li>
+        </ul>
+      </li>
+      <li><a href="#reservation">reservation</a>
+        <ul>
+          <li><a href="#reservation-cancel">cancel</a></li>
+          <li><a href="#reservation-create">create</a></li>
+          <li><a href="#reservation-list">list</a></li>
+        </ul>
+      </li>
+      <li><a href="#search">search</a>
+        <ul>
+          <li><a href="#search-engine">engine</a></li>
+        </ul>
+      </li>
+      <li><a href="#user">user</a>
+        <ul>
+          <li><a href="#user-create">create</a></li>
+          <li><a href="#user-list">list</a></li>
+        </ul>
+      </li>
+      <li><a href="#system">system</a>
+        <ul>
+          <li><a href="#system-session">session</a></li>
+          <li><a href="#system-sqlite">sqlite</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 id="auth">auth</h2>
+    <h3 id="auth-login">login</h3>
     <p>Log in to the system using provided credential. It accepts POST method only. </p>
     <p><code>POST <a href="#">/auth/login</a></code></p>
     <p>Sample output:</p>
@@ -51,7 +103,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <h3>logout</h3>
+    <h3 id="auth-logout">logout</h3>
     <p>Log out of the system. Access to authorized page will be immediately lost.</p>
     <p><code>GET <a href="auth/logout" target="_blank">/auth/logout</a></code></p>
     <p>Sample output:</p>
@@ -63,7 +115,7 @@
           "timestamp": "2020-05-15 04:05:11 UTC+0"
       }
     </code>
-    <h3>status</h3>
+    <h3 id="auth-status">status</h3>
     <p>List the current auth status, with user information (if user is logged in).</p>
     <p><code>GET <a href="auth/status" target="_blank">/auth/status</a></code></p>
     <p>Sample output:</p>
@@ -81,8 +133,8 @@
       }
     </code>
 
-    <h2>chain</h2>
-    <h3>create</h3>
+    <h2 id="chain">chain</h2>
+    <h3 id="chain-create">create</h3>
     <p>Create a chain. It accepts POST method only. An administrator user must log in before chain is created. The backend validates before creating a new chain.</p>
     <p><code>POST <a href="#">/chain/create</a></code></p>
     <p>Sample output:</p>
@@ -102,7 +154,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <h3>list</h3>
+    <h3 id="chain-list">list</h3>
     <p>List all the chains stored in database.</p>
     <p><code>GET <a href="chain/list" target="_blank">/chain/list</a></code></p>
     <p>Sample output:</p>
@@ -131,8 +183,8 @@
       }
     </code>
 
-    <h2>hotel</h2>
-    <h3>create</h3>
+    <h2 id="hotel">hotel</h2>
+    <h3 id="hotel-create">create</h3>
     <p>Create a hotel. It accepts POST method only. An administrator user must log in before hotel is created. The backend validates before creating a new hotel.</p>
     <p><code>POST <a href="#">/hotel/create</a></code></p>
     <p>Sample output:</p>
@@ -160,7 +212,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <h3>list</h3>
+    <h3 id="hotel-list">list</h3>
     <p>List all the hotels stored in database.</p>
     <p><code>GET <a href="hotel/list" target="_blank">/hotel/list</a></code></p>
     <p>Sample output:</p>
@@ -207,8 +259,254 @@
       }
     </code>
 
-    <h2>user</h2>
-    <h3>create</h3>
+    <h2 id="room">room</h2>
+    <h3 id="room-create">create</h3>
+    <p>Create a room. It accepts POST method only. An administrator user must log in before room is created. Administrators can only add room to the hotels they own. The backend validates before creating a new hotel.</p>
+    <p><code>POST <a href="#">/room/create</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": null,
+          "message": "success",
+          "timestamp": "2020-05-15 04:05:11 UTC+0"
+      }
+    </code>
+    <p>Test:</p>
+    <form action="room/create/" method="POST" target="_blank">
+      <div class="form-group">
+        <label for="hotel_id">hotel_id</label>
+        <input type="number" class="form-control" id="hotel_id" name="hotel_id" min="1">
+      </div>
+      <div class="form-group">
+        <label for="name">name</label>
+        <input type="text" class="form-control" id="name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="description">description</label>
+        <input type="text" class="form-control" id="description" name="description">
+      </div>
+      <div class="form-group">
+        <label for="rate">rate</label>
+        <select class="form-control" id="rate" name="rate">
+          <option>cheap</option>
+          <option>moderate</option>
+          <option>deluxe</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="price">price</label>
+        <input type="number" class="form-control" id="price" name="price" min="0">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3 id="room-list">list</h3>
+    <p>List all the rooms stored in database.</p>
+    <p><code>GET <a href="room/list" target="_blank">/room/list</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": [
+              {
+                  "id": 27,
+                  "hotel_id": 1,
+                  "name": "Family Room",
+                  "hotel_name": "Hilton Garden Inn Long Island City New York",
+                  "rate": "moderate",
+                  "price": 88,
+                  "created": "2020-05-23 07:54:26",
+                  "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/83.0.4103.61 Safari\/537.36",
+                  "ip_address": "66.155.225.131"
+              },
+              {
+                  "id": 37,
+                  "hotel_id": 2,
+                  "name": "Small Room",
+                  "hotel_name": "New York Hilton Midtown",
+                  "rate": "cheap",
+                  "price": 29,
+                  "created": "2020-05-23 07:57:16",
+                  "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/83.0.4103.61 Safari\/537.36",
+                  "ip_address": "66.155.225.131"
+              },
+              {
+                  "id": 20,
+                  "hotel_id": 7,
+                  "name": "test6",
+                  "hotel_name": "Mings Hotel New York Queens Fresh Meadows",
+                  "rate": "deluxe",
+                  "price": 144,
+                  "created": "2020-05-23 07:46:14",
+                  "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/83.0.4103.61 Safari\/537.36",
+                  "ip_address": "66.155.225.131"
+              }
+          ],
+          "message": "success",
+          "timestamp": "2020-05-23 07:05:32 UTC+0"
+      }
+    </code>
+
+    <h2 id="reservation">reservation</h2>
+    <h3 id="reservation-cancel">cancel</h3>
+    <p>Cancel a reservation. It accepts POST method only. An customer user must log in before reservation is canceled. The backend validates before canceling a new hotel.</p>
+    <p><code>POST <a href="#">/reservation/cancel</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": null,
+          "message": "success",
+          "timestamp": "2020-05-15 04:05:11 UTC+0"
+      }
+    </code>
+    <p>Test:</p>
+    <form action="reservation/cancel/" method="POST" target="_blank">
+      <div class="form-group">
+        <label for="reservation_id">reservation_id</label>
+        <input type="number" class="form-control" id="reservation_id" name="reservation_id" min="1">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3 id="reservation-create">create</h3>
+    <p>Create a reservation. It accepts POST method only. An customer user must log in before reservation is created. The backend validates before creating a new hotel.</p>
+    <p><code>POST <a href="#">/reservation/create</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": null,
+          "message": "success",
+          "timestamp": "2020-05-15 04:05:11 UTC+0"
+      }
+    </code>
+    <p>Test:</p>
+    <form action="reservation/create/" method="POST" target="_blank">
+      <div class="form-group">
+        <label for="room_id">room_id</label>
+        <input type="number" class="form-control" id="room_id" name="room_id" min="1">
+      </div>
+      <div class="form-group">
+        <label for="date_from">date_from</label>
+        <input type="date" class="form-control" id="date_from" name="date_from">
+      </div>
+      <div class="form-group">
+        <label for="date_to">date_to</label>
+        <input type="date" class="form-control" id="date_to" name="date_to">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3 id="reservation-list">list</h3>
+    <p>List all the reservations stored in database, that have not been canceled.</p>
+    <p><code>GET <a href="reservation/list" target="_blank">/room/list</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      {
+          "code": 0,
+          "data": [
+              {
+                  "id": 1,
+                  "user_id": 1,
+                  "room_id": 11,
+                  "date_from": "2020-05-23",
+                  "date_to": "2020-05-25",
+                  "created": "2020-05-23 16:34:00",
+                  "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/83.0.4103.61 Safari\/537.36",
+                  "ip_address": "66.155.225.131"
+              }
+          ],
+          "message": "success",
+          "timestamp": "2020-05-23 04:05:24 UTC+0"
+      }
+    </code>
+    <h3 id="reservation-list-all">list-all</h3>
+    <p>List all the reservations table stored in database. Do not use this endpoint. It's for debug only.</p>
+    <p><code>GET <a href="reservation/list-all" target="_blank">/room/list-all</a></code></p>
+    <h3 id="reservation-list-canceled">list-canceled</h3>
+    <p>List all the reservations_canceled stored in database. Do not use this endpoint. It's for debug only.</p>
+    <p><code>GET <a href="reservation/list-canceled" target="_blank">/room/list-canceled</a></code></p>
+
+    <h2 id="search">search</h2>
+    <h3 id="search-engine">engine</h3>
+    <p>Query the backend. It accepts GET method only. It returns an array of hotels and room which are not reserved based on the from/to date. Additional filters may apply.</p>
+    <p><code>GET <a href="#">/user/create</a></code></p>
+    <p>Sample output:</p>
+    <code>
+      /search/engine/?date_from=2020-05-20&date_to=2020-05-28&hotel_name=hilton&rate=deluxe&price_from_106&price_to=107&order_by=price
+      {
+          "code": 0,
+          "data": [
+              {
+                  "hotel_id": 1,
+                  "room_id": 30,
+                  "hotel_name": "Hilton Garden Inn Long Island City New York",
+                  "room_name": "Queen Room",
+                  "description": "A deluxe room with a queen-sized bed.",
+                  "rate": "deluxe",
+                  "price": 106
+              },
+              {
+                  "hotel_id": 2,
+                  "room_id": 31,
+                  "hotel_name": "New York Hilton Midtown",
+                  "room_name": "Queen Room",
+                  "description": "A deluxe room with a queen-sized bed.",
+                  "rate": "deluxe",
+                  "price": 106
+              },
+              {
+                  "hotel_id": 3,
+                  "room_id": 32,
+                  "hotel_name": "Hilton Hotel New York Times Square West",
+                  "room_name": "Queen Room",
+                  "description": "A deluxe room with a queen-sized bed.",
+                  "rate": "deluxe",
+                  "price": 107
+              }
+          ],
+          "message": "success",
+          "timestamp": "2020-05-23 10:05:11 UTC+0"
+      }
+    </code>
+    <p>Test:</p>
+    <form action="search/engine/" method="GET" target="_blank">
+      <div class="form-group">
+        <label for="date_from">date_from</label>
+        <input type="date" class="form-control" id="date_from" name="date_from" required>
+      </div>
+      <div class="form-group">
+        <label for="date_to">date_to</label>
+        <input type="date" class="form-control" id="date_to" name="date_to" required>
+      </div>
+      <div class="form-group">
+        <label for="rate">rate</label>
+        <select class="form-control" id="rate" name="rate">
+          <option>cheap</option>
+          <option>moderate</option>
+          <option>deluxe</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="hotel_name">hotel_name</label>
+        <input type="text" class="form-control" id="hotel_name" name="hotel_name">
+      </div>
+      <div class="form-group">
+        <label for="price_from">price_from</label>
+        <input type="number" class="form-control" id="price_from" name="price_from">
+      </div>
+      <div class="form-group">
+        <label for="price_to">price_to</label>
+        <input type="number" class="form-control" id="price_to" name="price_to">
+      </div>
+      <div class="form-group">
+        <label for="order_by">order_by</label>
+        <input type="number" class="form-control" id="order_by" name="order_by">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <h2 id="user">user</h2>
+    <h3 id="user-create">create</h3>
     <p>Create a user. It accepts POST method only. Specify role with either `customer` or `administrator`. The backend validates before creating a new user.</p>
     <p><code>POST <a href="#">/user/create</a></code></p>
     <p>Sample output:</p>
@@ -239,7 +537,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <h3>list</h3>
+    <h3 id="user-list">list</h3>
     <p>List all the users stored in database.</p>
     <p><code>GET <a href="user/list" target="_blank">/user/list</a></code></p>
     <p>Sample output:</p>
@@ -271,8 +569,8 @@
       }
     </code>
 
-    <h2>system</h2>
-    <h3>session</h3>
+    <h2 id="system">system</h2>
+    <h3 id="system-session">session</h3>
     <p>List the php session content.</p>
     <p><code>GET <a href="system/session" target="_blank">/system/session</a></code></p>
     <p>Sample output:</p>
@@ -286,7 +584,7 @@
           "timestamp": "2020-05-11 06:05:17 UTC+0"
       }
     </code>
-    <h3>sqlite</h3>
+    <h3 id="system-sqlite">sqlite</h3>
     <p>Test whether sqlite3 connection with php is working.</p>
     <p><code>GET <a href="system/sqlite" target="_blank">/system/sqlite</a></code></p>
     <p>Sample output:</p>
